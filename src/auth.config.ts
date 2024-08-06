@@ -26,9 +26,13 @@ export default {
         },
     })],
     callbacks:{
-        jwt: async ({token, user}) => {
-            const {sub} = token
-            token.id = sub
+        session: async ({session, token})=>{
+            if(token.sub && session.user){
+                session.user.id = token.sub
+            }
+            return session
+        },
+        jwt: async ({token}) => {
             return token
         }
     }
