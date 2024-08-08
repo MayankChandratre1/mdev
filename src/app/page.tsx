@@ -1,18 +1,18 @@
 "use client"
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+  const router = useRouter()
+  const user = useSession()
+  if(user.status == "authenticated"){
+    router.push("/home")
+  }
   return (
     <div>
-      <Button variant={"avatar"} onClick={()=> alert("Hi")}>
-      <Avatar>
-  <AvatarImage src="https://avatar.iran.liara.run/public/50" />
-  
-</Avatar></Button>
-
+      
     </div>
   );
 }
