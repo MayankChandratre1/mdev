@@ -67,3 +67,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .shadow-hover {
+    @apply shadow-sm hover:shadow-lg
+  }
+}

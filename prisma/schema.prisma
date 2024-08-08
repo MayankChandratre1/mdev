@@ -23,7 +23,7 @@ model User {
   followersCount Int @default(0)
   following     UserRelations[] @relation("Following")
   followingCount Int @default(0)
-  posts         Post[] @relation("post-user")
+  blogs         Blog[] @relation("blog-user")
   liked         Like[] @relation("like-user")
   comments         Comment[]    @relation("comment-user")
   @@map("users")
@@ -39,46 +39,47 @@ model UserRelations {
 }
 
 
-model Post {
+model Blog {
   id            String      @id @default(cuid())
   title         String
   content       String
+  isPublic      Boolean
   thumbnail     String
-  createdAt     DateTime
+  createdAt     DateTime  @default(now())
   updatedAt     DateTime
   authorId      String
-  author        User      @relation("post-user",fields: [authorId], references: [id])
-  likes         Like[]    @relation("like-post")
+  author        User      @relation("blog-user",fields: [authorId], references: [id])
+  likes         Like[]    @relation("like-blog")
   likeCount     Int @default(0)
-  comments         Comment[]    @relation("comment-post")
+  comments         Comment[]    @relation("comment-blog")
   commentCount     Int @default(0)
-  tags    Tag[] @relation("tag-post")
+  tags    Tag[] @relation("tag-blog")
 }
 
 model Like{
   id  String @id @default(cuid())
-  postId String
-  post Post @relation("like-post", fields: [postId], references: [id])
+  blogId String
+  blog Blog @relation("like-blog", fields: [blogId], references: [id])
   userId String
   user User @relation("like-user", fields: [userId], references: [id])
-  @@unique([postId, userId])
+  @@unique([blogId, userId])
 }
 
 model Comment{
   id  String @id @default(cuid())
-  postId String
-  post Post @relation("comment-post", fields: [postId], references: [id])
+  blogId String
+  blog Blog @relation("comment-blog", fields: [blogId], references: [id])
   userId String
   user User @relation("comment-user", fields: [userId], references: [id])
   content   String
   createdAt DateTime
   likeCount     Int   @default(0)
-  @@unique([postId, userId])
+  @@unique([blogId, userId])
 }
 
 model Tag{
   id String @id @default(cuid())
   label String @unique
-  posts Post[] @relation("tag-post")
+  blogs Blog[] @relation("tag-blog")
 }
 

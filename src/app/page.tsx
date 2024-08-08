@@ -10,7 +10,7 @@ export default function Home() {
       <Button variant={"avatar"} onClick={()=> alert("Hi")}>
       <Avatar>
   <AvatarImage src="https://avatar.iran.liara.run/public/50" />
-  <AvatarFallback>CN</AvatarFallback>
+  
 </Avatar></Button>
 
     </div>

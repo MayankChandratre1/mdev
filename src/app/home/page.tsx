@@ -1,11 +1,11 @@
 import { auth } from '@/auth'
+import { Blogs } from '@/components/blogs/Blogs'
 import React from 'react'
 
 const HomePage = async () => {
-    const user = await auth()
   return (
-    <div>
-        {JSON.stringify(user)}
+    <div >
+        <Blogs />
     </div>
   )
 }
