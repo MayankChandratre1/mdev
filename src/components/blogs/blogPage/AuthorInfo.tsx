@@ -14,16 +14,18 @@ import AuthorAvatar from '@/components/AuthorAvatar';
 const AuthorInfo = ({author}:{
   author?:{
     name:string | null,
-    image:string | null
+    image:string | null,
+    about:string
   }
 }) => {
   return (
     <Card>
       <CardHeader>
-        <div className='flex gap-3'>
+        <div className='flex gap-3 mb-2'>
         <AuthorAvatar img={author?.image} name={author?.name} />
         <p>{author?.name}</p>
         </div>
+        <p className='text-sm italic text-gray-400'>"{author?.about}"</p>
       </CardHeader>
     </Card>
   )
