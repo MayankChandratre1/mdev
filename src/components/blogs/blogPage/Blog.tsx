@@ -17,7 +17,7 @@ const Blog = ({blog}:{
   }
 
   return (
-    <div className='min-h-[200px]  p-2'>
+    <div className='min-h-[200px] p-2'>
       <BlogHeader blog={blog} />
       <BlogContent content={blog.content}/>
     </div>

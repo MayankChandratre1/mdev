@@ -20,11 +20,11 @@ const BlogHeader = ({blog}:{
     blog:PublicBlog
 }) => {
   return (
-    <Card className='border-0 border-b-[1px] rounded-none border-b-black shadow-none '>
-        <CardHeader>
+    <Card className='border-0 border-b-[1px] rounded-none border-b-black shadow-none  '>
+        <CardHeader className='max-md:p-2'>
             {!blog.thumbnail ? <div className='w-full h-[200px] lg:h-[300px] bg-red-500'></div>:null}
-            <CardTitle className='text-2xl lg:text-3xl font-bold cursor-pointer'>{blog.title}</CardTitle>
-            <CardDescription className='text-[0.6rem] lg:text-sm text-blue-600 flex gap-1 items-center'>
+            <CardTitle className='text-xl lg:text-3xl font-bold cursor-pointer'>{blog.title}</CardTitle>
+            <CardDescription className='text-[0.5rem] lg:text-sm text-blue-600 flex gap-1 items-center'>
             {blog.author.name} <Pencil1Icon /> {formatDate(blog.createdAt)} <ClockIcon />
  {readTime(blog.content)} min read
             </CardDescription>

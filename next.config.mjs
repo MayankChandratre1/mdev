@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
@@ -9,7 +10,8 @@ const nextConfig = {
               pathname: '/*',
             },
           ],
-    }
+    },
+    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 };
 
 export default nextConfig;

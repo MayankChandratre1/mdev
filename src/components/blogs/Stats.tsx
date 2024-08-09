@@ -10,7 +10,7 @@ const Stats = ({
 }) => {
   return (
     <div>
-        <div className='flex items-center gap-3 text-gray-500/80 hover:text-gray-600'>
+        <div className='flex items-center gap-2 md:gap-3 text-gray-500/80 hover:text-gray-600 text-xs md:text-md'>
             <span><LikeIcon size='sm' /> {likes}</span>
             <span><ChatBubbleIcon className='inline-block' /> {comments}</span>
         </div>

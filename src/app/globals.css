@@ -66,10 +66,14 @@
   body {
     @apply bg-background text-foreground;
   }
+
 }
 
 @layer components {
   .shadow-hover {
     @apply shadow-sm hover:shadow-lg
+  }
+  .md-code {
+    @apply prose-code:p-2 prose-code:rounded-md prose-code:text-white prose-code:bg-gray-900 prose-code:inline-block prose-code:my-2 prose-code:text-wrap prose-code:max-w-full
   }
 }

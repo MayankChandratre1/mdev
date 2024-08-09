@@ -11,6 +11,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "../ui/button";
 import { signOut } from "next-auth/react";
+import UserAvatar from "../UserAvatar";
 const AppBar = ({children}:{
   children:React.ReactNode
 }) => {
@@ -26,12 +27,7 @@ const AppBar = ({children}:{
         <div>
           <Popover>
             <PopoverTrigger>
-              <Avatar>
-                {/* <AvatarImage className="w-10 h-10" src="https://avatar.iran.liara.run/public/50" /> */}
-                <AvatarFallback className="bg-gray-900 dark:bg-gray-300 dark:text-gray-700 px-3 py-2 text-white rounded-full shadow-hover">
-                  U
-                </AvatarFallback>
-              </Avatar>
+              <UserAvatar />
             </PopoverTrigger>
             <PopoverContent>
               <div className="flex flex-col space-y-2 py-3 px-2 my-3 mr-3 rounded-xl justify-center bg-white shadow-lg">

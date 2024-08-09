@@ -1,10 +1,13 @@
+
 import React from 'react'
 
 const BlogContent = ({content}:{
     content:string
 }) => {
   return (
-    <div>{content}</div>
+    <div className='pt-5 prose prose-sm md:prose-md lg:prose-xl   mx-auto'>
+       hi
+    </div>
   )
 }
 

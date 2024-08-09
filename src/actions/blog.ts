@@ -12,7 +12,8 @@ export type PublicBlog = {
     commentCount:number,
     thumbnail:string,
     author:{
-        name:string | null
+        name:string | null,
+        image:string | null
     },
     tags:{
         label:string
@@ -37,7 +38,8 @@ export const getAllBlogs: ()=> Promise<PublicBlog[]> = async () => {
             thumbnail:true,
             author:{
                 select:{
-                    name:true
+                    name:true,
+                    image:true
                 }
             },
             tags:{
@@ -51,7 +53,7 @@ export const getAllBlogs: ()=> Promise<PublicBlog[]> = async () => {
     return blogs
 }
 
-export const getBlogById = async (id:string) => {
+export const getBlogById: (id:string)=> Promise<PublicBlog | null> = async (id:string) => {
     const blog = await prisma.blog.findFirst({
         where:{
             id
@@ -67,7 +69,8 @@ export const getBlogById = async (id:string) => {
             thumbnail:true,
             author:{
                 select:{
-                    name:true
+                    name:true,
+                    image:true
                 }
             },
             tags:{
@@ -81,7 +84,7 @@ export const getBlogById = async (id:string) => {
     return blog
 }
 
-export const getBlogByAutherId = async (authorId:string) => {
+export const getBlogByAutherId: (authorId:string)=> Promise<PublicBlog | null> = async (authorId:string) => {
     const blog = await prisma.blog.findFirst({
         where:{
             authorId
@@ -97,7 +100,8 @@ export const getBlogByAutherId = async (authorId:string) => {
             thumbnail:true,
             author:{
                 select:{
-                    name:true
+                    name:true,
+                    image:true
                 }
             },
             tags:{
@@ -128,7 +132,8 @@ export const getCurrentUserBlogs: ()=> Promise<PublicBlog[]>  = async () => {
             thumbnail:true,
             author:{
                 select:{
-                    name:true
+                    name:true,
+                    image:true
                 }
             },
             tags:{
@@ -140,4 +145,24 @@ export const getCurrentUserBlogs: ()=> Promise<PublicBlog[]>  = async () => {
     })
 
     return blog
+}
+
+export const createBlog = async ({name, content}:{
+    name:string, content:string
+}) => {
+    console.log("Create Blog Init");
+    
+    await prisma.blog.create({
+        data:{
+            title:name,
+            content,
+            authorId:(await auth())?.user?.id || " ",
+            isPublic:true,
+            updatedAt:new Date(),
+            createdAt:new Date(),
+            thumbnail:""
+        }
+    })
+    console.log("Blog Created");
+    
 }

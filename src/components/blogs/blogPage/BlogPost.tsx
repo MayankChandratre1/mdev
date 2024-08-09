@@ -17,7 +17,7 @@ const BlogPost = async ({id}:{
             <Blog blog={blog} />
         </div>
         <div className='col-span-3'>
-            <AuthorInfo />
+            <AuthorInfo author={blog?.author} />
         </div>
     </div>
   )

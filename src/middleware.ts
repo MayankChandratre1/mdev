@@ -11,7 +11,7 @@ const { auth } = NextAuth(authConfig)
 export default auth((req) => {
     const {nextUrl} = req
     const isSignedIn = !!req.auth
-    console.log("####AUTH: Middleware at "+nextUrl.pathname + " "+isSignedIn);
+    //console.log("####AUTH: Middleware at "+nextUrl.pathname + " "+isSignedIn);
     
     
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
