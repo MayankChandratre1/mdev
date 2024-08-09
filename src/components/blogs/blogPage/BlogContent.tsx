@@ -8,7 +8,7 @@ const BlogContent = ({content}:{
   
   return (
     <div className='mt-5 '>
-      <article className='prose prose-sm lg:prose-lg xl:prose-xl ' dangerouslySetInnerHTML={{__html:content+""}}>
+      <article className='prose prose-sm lg:prose-lg xl:prose-xl dark:prose-invert' dangerouslySetInnerHTML={{__html:content+""}}>
     </article>
     </div>
   )
