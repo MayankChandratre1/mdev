@@ -8,13 +8,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "../ui/button";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import UserAvatar from "../UserAvatar";
+
+
 const AppBar = ({children}:{
   children:React.ReactNode
 }) => {
+  const session = useSession()
   return (
     <div className="px-12 lg:px-24 py-3 flex items-center justify-between dark:bg-gray-700 border-b fixed w-full z-10 backdrop-blur-sm bg-white/50 dark:bg-black/50">
       <div>
@@ -27,7 +29,7 @@ const AppBar = ({children}:{
         <div>
           <Popover>
             <PopoverTrigger>
-              <UserAvatar />
+              <UserAvatar img={session.data?.user?.image} name={session.data?.user?.name}/>
             </PopoverTrigger>
             <PopoverContent>
               <div className="flex flex-col space-y-2 py-3 px-2 my-3 mr-3 rounded-xl justify-center bg-white shadow-lg">

@@ -13,10 +13,10 @@ const BlogPost = async ({id}:{
         <div className='col-span-1'>
             <InteractionMenu />
         </div>
-        <div className='col-span-8'>
+        <div className='col-span-11 sm:col-span-8 '>
             <Blog blog={blog} />
         </div>
-        <div className='col-span-3'>
+        <div className='col-span-11 col-start-2 sm:col-span-3 sm:col-start-10 '>
             <AuthorInfo author={blog?.author} />
         </div>
     </div>

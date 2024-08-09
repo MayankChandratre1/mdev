@@ -19,6 +19,7 @@ model User {
   email         String?   @unique
   image         String?   
   password      String?
+  about         String    @default("A Lovely Blogger.")
   followers     UserRelations[] @relation("Followers")
   followersCount Int @default(0)
   following     UserRelations[] @relation("Following")

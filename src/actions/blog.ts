@@ -13,7 +13,8 @@ export type PublicBlog = {
     thumbnail:string,
     author:{
         name:string | null,
-        image:string | null
+        image:string | null,
+        about:string
     },
     tags:{
         label:string
@@ -39,7 +40,8 @@ export const getAllBlogs: ()=> Promise<PublicBlog[]> = async () => {
             author:{
                 select:{
                     name:true,
-                    image:true
+                    image:true,
+                    about:true
                 }
             },
             tags:{
@@ -70,7 +72,8 @@ export const getBlogById: (id:string)=> Promise<PublicBlog | null> = async (id:s
             author:{
                 select:{
                     name:true,
-                    image:true
+                    image:true,
+                    about:true
                 }
             },
             tags:{
@@ -101,7 +104,8 @@ export const getBlogByAutherId: (authorId:string)=> Promise<PublicBlog | null> =
             author:{
                 select:{
                     name:true,
-                    image:true
+                    image:true,
+                    about:true
                 }
             },
             tags:{
@@ -133,7 +137,8 @@ export const getCurrentUserBlogs: ()=> Promise<PublicBlog[]>  = async () => {
             author:{
                 select:{
                     name:true,
-                    image:true
+                    image:true,
+                    about:true
                 }
             },
             tags:{

@@ -1,10 +1,10 @@
-import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import React from "react";
 
-const UserAvatar = async () => {
-    const session = await auth()
-    const img = session?.user?.image
+const UserAvatar = ({img, name}:{
+  img?:string|null,
+  name?:string|null
+}) => {
   return (
     <Avatar>
       {img && <AvatarImage
@@ -12,7 +12,7 @@ const UserAvatar = async () => {
         src={img}
       />}
       <AvatarFallback className="bg-gray-900 dark:bg-gray-300 dark:text-gray-700 px-3 py-2 text-white rounded-full shadow-hover">
-        {session?.user?.name?.substring(0,1)}
+        {name?.substring(0,1)}
       </AvatarFallback>
     </Avatar>
   );

@@ -1,12 +1,15 @@
 
+import Markdown from '@/components/markdown/Markdown'
 import React from 'react'
 
 const BlogContent = ({content}:{
     content:string
 }) => {
+  
   return (
-    <div className='pt-5 prose prose-sm md:prose-md lg:prose-xl   mx-auto'>
-       hi
+    <div className='mt-5 '>
+      <article className='prose prose-sm lg:prose-lg xl:prose-xl ' dangerouslySetInnerHTML={{__html:content+""}}>
+    </article>
     </div>
   )
 }
