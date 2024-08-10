@@ -1,4 +1,3 @@
-import { auth } from '@/auth'
 import { Blogs } from '@/components/blogs/Blogs'
 import React from 'react'
 

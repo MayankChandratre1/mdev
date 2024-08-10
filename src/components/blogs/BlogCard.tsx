@@ -17,6 +17,7 @@ import Stats from './Stats';
 import { ClockIcon, Pencil1Icon } from '@radix-ui/react-icons';
 import { PencilIcon } from '../icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 const BlogCard = ({blog}:{
@@ -52,7 +53,9 @@ export const BlogCardHeader = ({thumbnail, title, authorname, content, createdAt
 }) => {
     return (
       <>
-        <Link href={`/blog/${id}`}>{thumbnail ? <div className='w-full h-[200px] lg:h-[300px] bg-red-500'></div>:null}</Link>
+        <Link href={`/blog/${id}`}>{thumbnail ? <div className='w-full h-[200px] lg:h-[300px] bg-red-500'>
+          <Image src={thumbnail} alt='thumbnail' width={600} height={400} className='w-full h-full object-cover'/>
+        </div>:null}</Link>
         <CardHeader>
             <Link href={`/blog/${id}`}>
             <CardTitle className='text-2xl lg:text-3xl font-bold cursor-pointer'>{title}</CardTitle>
