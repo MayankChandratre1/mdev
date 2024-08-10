@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col" >
         <AppBar>
             <Button asChild variant={"ghost"}><Link href="/home"><HomeIcon /></Link></Button>
             <PencilButton />
