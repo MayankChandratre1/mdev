@@ -198,3 +198,48 @@ export const publish = async (id:string) => {
         return {id:null, error:true}
     }  
 }
+
+export const connectToTags = async (tags:string[],id:string) => {
+    try{
+        const blog = await prisma.blog.update(
+            {
+                where:{
+                    id
+                },
+                data:{
+                    tags:{
+                        connectOrCreate:tags.map(tag => ({
+                            where:{label:tag},
+                            create:{label:tag}
+                        }))
+                    }
+                }
+            }
+        )
+        return {
+            id,
+            success:true
+        }
+    }catch(err){
+        console.log("## BLOG-TAG ERROR: \n"+err);
+        return {error:true}
+    }
+}
+
+export const updateImage = async (id:string, url:string | undefined) => {
+     try{
+        const blog = await prisma.blog.update({
+            where:{id},
+            data:{
+                thumbnail:url
+            }
+        })
+        return {
+            id,
+            success:true
+        }
+    }catch(err){
+        console.log("## Blog ERROR: \n"+err);
+        return {error:true}
+    }
+}

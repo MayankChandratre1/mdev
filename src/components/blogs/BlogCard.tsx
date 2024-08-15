@@ -54,7 +54,7 @@ export const BlogCardHeader = ({thumbnail, title, authorname, content, createdAt
     return (
       <>
         <Link href={`/blog/${id}`}>{thumbnail ? <div className='w-full h-[200px] lg:h-[300px] bg-red-500'>
-          <Image src={thumbnail} alt='thumbnail' width={600} height={400} className='w-full h-full object-cover'/>
+          <Image src={thumbnail} alt='thumbnail' width={600} height={400} className='w-full h-full object-cover object-top '/>
         </div>:null}</Link>
         <CardHeader>
             <Link href={`/blog/${id}`}>

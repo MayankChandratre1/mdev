@@ -3,5 +3,7 @@ export const tagFormatter = (rawTags:string) => {
     const filteredTagsArray = rawTagsArray.filter((tag)=>{
         return tag.startsWith('#')
     })
-    return filteredTagsArray
+    const processedTags = filteredTagsArray.map(tag=> tag.slice(1).toLowerCase())
+    const tags = Array.from(new Set(processedTags))
+    return tags
 }

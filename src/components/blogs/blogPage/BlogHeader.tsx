@@ -22,7 +22,7 @@ const BlogHeader = ({ blog }: { blog: PublicBlog }) => {
       <CardHeader className="max-md:p-2">
         {blog.thumbnail ? (
           <div className="w-full h-[200px] lg:h-[300px] bg-red-500">
-             <Image src={blog.thumbnail} alt='thumbnail' width={600} height={400} className='w-full h-full object-cover'/>
+             <Image src={blog.thumbnail} alt='thumbnail' width={600} height={400} className='w-full h-full object-cover object-top'/>
           </div>
         ) : null}
         <CardTitle className="text-xl lg:text-3xl font-bold cursor-pointer">
