@@ -7,8 +7,10 @@ const Markdown = async ({content}:{
   const html = await mdToHtml(content);
   console.log(html);
   return (
-    <article className='prose prose-sm lg:prose-lg xl:prose-xl ' dangerouslySetInnerHTML={{__html:html+""}}>
-    </article>
+    <div className='mt-5'>
+      <article className='prose prose-sm lg:prose-lg xl:prose-xl prose-a:italic prose-a:text-blue-500 dark:prose-invert' dangerouslySetInnerHTML={{__html:html+""}}>
+      </article>
+    </div>
   )
 }
 

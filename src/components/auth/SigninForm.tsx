@@ -18,7 +18,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import FeedBackMessage from './FeedbackMessage'
-import { signIn } from 'next-auth/react'
 import { signin } from '@/actions/signin'
 
 const SigninForm = () => {

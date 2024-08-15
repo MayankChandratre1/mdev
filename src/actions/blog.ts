@@ -1,5 +1,6 @@
+"use server"
 import { auth } from "@/auth"
-import { prisma, Blog, Tag } from "@/lib/db"
+import { prisma } from "@/lib/db"
 
 
 export type PublicBlog = {
@@ -20,7 +21,6 @@ export type PublicBlog = {
         label:string
     }[]
 }
-
 
 
 export const getAllBlogs: ()=> Promise<PublicBlog[]> = async () => {
@@ -55,6 +55,7 @@ export const getAllBlogs: ()=> Promise<PublicBlog[]> = async () => {
     return blogs
 }
 
+
 export const getBlogById: (id:string)=> Promise<PublicBlog | null> = async (id:string) => {
     const blog = await prisma.blog.findFirst({
         where:{
@@ -87,6 +88,7 @@ export const getBlogById: (id:string)=> Promise<PublicBlog | null> = async (id:s
     return blog
 }
 
+
 export const getBlogByAutherId: (authorId:string)=> Promise<PublicBlog | null> = async (authorId:string) => {
     const blog = await prisma.blog.findFirst({
         where:{
@@ -118,6 +120,7 @@ export const getBlogByAutherId: (authorId:string)=> Promise<PublicBlog | null> =
 
     return blog
 }
+
 
 export const getCurrentUserBlogs: ()=> Promise<PublicBlog[]>  = async () => {
     const author = await auth()
@@ -152,22 +155,46 @@ export const getCurrentUserBlogs: ()=> Promise<PublicBlog[]>  = async () => {
     return blog
 }
 
-export const createBlog = async ({name, content}:{
-    name:string, content:string
+
+export const createBlog = async ({title, content}:{
+    title:string, content:string
 }) => {
-    console.log("Create Blog Init");
-    
-    await prisma.blog.create({
-        data:{
-            title:name,
-            content,
-            authorId:(await auth())?.user?.id || " ",
-            isPublic:true,
-            updatedAt:new Date(),
-            createdAt:new Date(),
-            thumbnail:""
+    try{
+        const blog = await prisma.blog.create({
+            data:{
+                title:title,
+                content,
+                authorId:(await auth())?.user?.id || " ",
+                isPublic:false,
+                updatedAt:new Date(),
+                createdAt:new Date(),
+                thumbnail:"https://placehold.co/600x400"
+            }
+        })
+        if(blog){
+            return {id:blog.id, success:true}
         }
-    })
-    console.log("Blog Created");
-    
+    }catch(err){
+        console.log(err);
+        return {id:null, error:true}
+    }  
+}
+
+export const publish = async (id:string) => {
+    try{
+        const blog = await prisma.blog.update({
+            where:{
+                id
+            },
+            data:{
+                isPublic:true,
+            }
+        })
+        if(blog){
+            return {id:blog.id, success:true}
+        }
+    }catch(err){
+        console.log(err);
+        return {id:null, error:true}
+    }  
 }
